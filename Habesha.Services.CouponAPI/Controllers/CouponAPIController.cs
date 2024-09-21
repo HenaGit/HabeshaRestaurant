@@ -85,7 +85,7 @@ namespace Habesha.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpPut]
-        public ResponseDto put([FromBody] CouponDto couponDto)
+        public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
             {
