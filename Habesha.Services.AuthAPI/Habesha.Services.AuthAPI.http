@@ -1,0 +1,6 @@
+@Habesha.Services.AuthAPI_HostAddress = http://localhost:5155
+
+GET {{Habesha.Services.AuthAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
