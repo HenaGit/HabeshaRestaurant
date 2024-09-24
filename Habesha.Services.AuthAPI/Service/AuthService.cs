@@ -11,10 +11,12 @@ namespace Habesha.Services.AuthAPI.Service
         private readonly AppDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AuthService(AppDbContext db,
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        public AuthService(AppDbContext db, IJwtTokenGenerator jwtTokenGenerator,
             UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _db = db;
+            _jwtTokenGenerator = jwtTokenGenerator;
             _userManager = userManager;
             _roleManager = roleManager;
         }
@@ -27,6 +29,7 @@ namespace Habesha.Services.AuthAPI.Service
                 return new LoginResponseDto() { User = null, Token = "" };
             }
             //if user was found , Generate JWT Token
+            var token = _jwtTokenGenerator.GenerateToken(user);
             UserDto userDTO = new()
             {
                 Email = user.Email,
@@ -37,7 +40,7 @@ namespace Habesha.Services.AuthAPI.Service
             LoginResponseDto loginResponseDto = new LoginResponseDto()
             {
                 User = userDTO,
-                Token = ""
+                Token = token
             };
             return loginResponseDto;
         }
