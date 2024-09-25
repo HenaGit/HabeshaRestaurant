@@ -70,6 +70,7 @@ namespace Habesha.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Post([FromBody] CouponDto couponDto)
         {
             try
@@ -87,6 +88,7 @@ namespace Habesha.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
@@ -105,7 +107,8 @@ namespace Habesha.Services.CouponAPI.Controllers
         }
         [HttpDelete]
 		[Route("{id:int}")]
-		public ResponseDto Delete(int id)
+        [Authorize(Roles = "ADMIN")]
+        public ResponseDto Delete(int id)
         {
             try
             {
