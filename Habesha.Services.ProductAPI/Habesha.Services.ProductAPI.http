@@ -1,0 +1,6 @@
+@Habesha.Services.ProductAPI_HostAddress = http://localhost:5170
+
+GET {{Habesha.Services.ProductAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
